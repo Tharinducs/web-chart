@@ -1,1 +1,0 @@
-export const emptyCompanyMsg = "Please select the Company"
