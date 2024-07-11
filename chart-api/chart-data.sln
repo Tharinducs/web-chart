@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chart-data", "chart-data.cs
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{EF96965C-D35F-4D72-A89B-B18D87E7AA5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{768C0FDC-48F3-4F09-8CFA-FB4C806E0206}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EF96965C-D35F-4D72-A89B-B18D87E7AA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF96965C-D35F-4D72-A89B-B18D87E7AA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF96965C-D35F-4D72-A89B-B18D87E7AA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768C0FDC-48F3-4F09-8CFA-FB4C806E0206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768C0FDC-48F3-4F09-8CFA-FB4C806E0206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768C0FDC-48F3-4F09-8CFA-FB4C806E0206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768C0FDC-48F3-4F09-8CFA-FB4C806E0206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
