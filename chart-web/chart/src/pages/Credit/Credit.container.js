@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col } from 'antd';
+import { Card, Row, Col, Skeleton } from 'antd';
 import { XAxis, YAxis, Area, AreaChart } from 'recharts';
 import styles from './chartCreditStyle'
 import * as moment from 'moment'
-import { CREDIT_CHART_TITLE, WEIGHTED_BOND, MONTHS_YEARS_DAYS } from "../../constants";
+import { CREDIT_CHART_TITLE, WEIGHTED_BOND } from "../../constants";
 import { useSelector, Provider } from 'react-redux';
 import { getCreditData } from "../../store/effects/chart";
-import * as actionCreators from "../../store/actions/chart"
-import store, { dispatch } from "../../store";
+import store from "../../store";
 import { get } from "lodash";
+import ButtonsContainer from "../../components/TopButtons/Buttons.container";
 
 const Credit = () => {
     const [currentBtnIndex, setCurrentBtnIndex] = useState(0);
     const state = useSelector(state => state.chart);
 
     useEffect(() => {
-        getCreditData()
+        //load the data on component loading
+        getCreditData('6M')
     }, [])
 
     const onClick = (item, index) => {
+        //load the data on filter value changing
         setCurrentBtnIndex(index)
-        dispatch(actionCreators.setCreditCurrentData(item, get(state, 'creditData', [])))
+        getCreditData(item)
     }
 
     const getCurrentBtnData = () => {
@@ -29,32 +31,33 @@ const Credit = () => {
 
     return (
         <>
-            <Card title={CREDIT_CHART_TITLE}>
-                <div style={styles.topButtonContainer}>
-                    {MONTHS_YEARS_DAYS.map((item, index) => (<Button key={index} onClick={() => onClick(item, index)} style={index === currentBtnIndex ? styles.topButtonClicked : styles.topButton}>{item}</Button>))}
-                </div>
-                {getCurrentBtnData() && getCurrentBtnData().length > 0 ?
-                    <Row>
-                        <Col lg={18} md={24} xs={24} sm={24}>
-                            <AreaChart width={450} height={300} data={getCurrentBtnData()}>
-                                <defs>
-                                    <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#00CCFF" stopOpacity={0.8} />
-                                        <stop offset="95%" stopColor="#00CCFF" stopOpacity={0} />
-                                    </linearGradient>
-                                </defs>
-                                <XAxis dataKey="date" tickCount={3} />
-                                <YAxis tickCount={3} />
-                                <Area type="monotone" dataKey="value" stroke="none" fillOpacity={1} fill="url(#colorPv)" />
-                            </AreaChart>
-                        </Col>
-                        <Col style={styles.chartRightContainer} lg={4} md={24} xs={24} sm={24}>
-                            <div>{WEIGHTED_BOND}</div>
-                            <div style={{ fontSize: 12 }}>As of {moment(get(state, 'currentFilterCreditData.asOf')).format('DD MMMM YYYY')}</div>
-                            <div style={styles.chartRightContainerValue}>{get(state, 'currentFilterCreditData.weightedBond')}</div>
-                        </Col>
-                    </Row>
-                    : <></>}
+            <Card title={CREDIT_CHART_TITLE} style={{ zIndex: 1000 }}>
+                {!state.loadingCredit ?
+                    <><ButtonsContainer onClick={onClick} currentBtnIndex={currentBtnIndex} />
+                        {getCurrentBtnData() && getCurrentBtnData().length > 0 ?
+                            <Row>
+                                <Col lg={18} md={24} xs={24} sm={24}>
+                                    <AreaChart width={450} height={300} data={getCurrentBtnData()}>
+                                        <defs>
+                                            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#00CCFF" stopOpacity={0.8} />
+                                                <stop offset="95%" stopColor="#00CCFF" stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                        <XAxis dataKey="date" tickCount={3} />
+                                        <YAxis tickCount={3} />
+                                        <Area type="monotone" dataKey="value" stroke="none" fillOpacity={1} fill="url(#colorPv)" />
+                                    </AreaChart>
+                                </Col>
+                                <Col style={styles.chartRightContainer} lg={4} md={24} xs={24} sm={24}>
+                                    <div>{WEIGHTED_BOND}</div>
+                                    <div style={{ fontSize: 12 }}>As of {moment(get(state, 'currentFilterCreditData.asOf')).format('DD MMMM YYYY')}</div>
+                                    <div style={styles.chartRightContainerValue}>{get(state, 'currentFilterCreditData.weightedBond')}</div>
+                                </Col>
+                            </Row>
+                            : <></>}</>
+                    : <Skeleton active />}
+
             </Card>
         </>
     )

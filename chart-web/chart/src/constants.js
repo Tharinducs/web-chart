@@ -6,3 +6,4 @@ export const WEIGHTED_BOND = "Weighted Bond MV & Excess Returns"
 
 export const MONTHS_YEARS_DAYS = ['6M','12M','3Y','5Y','FYTD']
 
+export const API_BEGIN_TEXT = "api"

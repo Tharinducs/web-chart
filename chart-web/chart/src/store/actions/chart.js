@@ -2,6 +2,7 @@
 import * as actionTypes from './actionTypes'
 
 export const loadingCreditData = (payload) => {
+    console.log(payload,"payload")
     return {
         type: actionTypes.LOADING_CREDIT_DATA,
         loadingCredit: payload
@@ -11,7 +12,7 @@ export const loadingCreditData = (payload) => {
 export const loadingStockData = (payload) => {
     return {
         type: actionTypes.LOADING_STOCK_DATA,
-        loadingCredit: payload
+        loadingStock: payload
     }
 }
 
@@ -30,27 +31,17 @@ export const setCreditData = (payload) => {
 }
 
 
-export const setstockCurrentData = (filterValue = '6M', data = []) => {
-    let filteredValue = {}
-    const filteredData = data.filter((item) => item.value === filterValue)
-    if (filteredData.length > 0) {
-        filteredValue = filteredData[0]
-    }
+export const setstockCurrentData = (payload) => {
     return {
         type: actionTypes.GET_CURRENT_FILTER_STOCK_DATA,
-        currentFilterStockData: filteredValue
+        currentFilterStockData: payload
     }
 }
 
-export const setCreditCurrentData = (filterValue = '6M', data = []) => {
-    let filteredValue = {}
-    const filteredData = data.filter((item) => item.value === filterValue)
-    if (filteredData.length > 0) {
-        filteredValue = filteredData[0]
-    }
+export const setCreditCurrentData = (payload) => {
     return {
         type: actionTypes.GET_CURRENT_FILTER_CREDIT_DATA,
-        currentFilterCreditData: filteredValue
+        currentFilterCreditData: payload
     }
 }
 

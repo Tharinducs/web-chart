@@ -4,7 +4,9 @@ const initialState = {
     creditData: [],
     stockData: [],
     currentFilterStockData: {},
-    currentFilterCreditData: {}
+    currentFilterCreditData: {},
+    loadingStock: false,
+    loadingCredit: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -13,23 +15,33 @@ export default (state = initialState, action = {}) => {
             return {
                 ...state,
                 creditData: [...action.creditData],
-                currentFilterCreditData:{...action.creditData[0]}
+                currentFilterCreditData: { ...action.creditData[0] }
             };
         case actionTypes.LOAD_STOCK_DATA:
             return {
                 ...state,
                 stockData: [...action.stockData],
-                currentFilterStockData:{...action.stockData[0]}
+                currentFilterStockData: { ...action.stockData[0] }
             };
         case actionTypes.GET_CURRENT_FILTER_CREDIT_DATA:
             return {
                 ...state,
-                currentFilterCreditData: {...action.currentFilterCreditData}
+                currentFilterCreditData: { ...action.currentFilterCreditData }
             };
         case actionTypes.GET_CURRENT_FILTER_STOCK_DATA:
             return {
                 ...state,
-                currentFilterStockData: {...action.currentFilterStockData}
+                currentFilterStockData: { ...action.currentFilterStockData }
+            };
+        case actionTypes.LOADING_STOCK_DATA:
+            return {
+                ...state,
+                loadingStock: action.loadingStock
+            };
+        case actionTypes.LOADING_CREDIT_DATA:
+            return {
+                ...state,
+                loadingCredit: action.loadingCredit
             };
         default:
             return state;

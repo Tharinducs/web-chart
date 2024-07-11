@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import Credit from './pages/Credit';
 import Stock from './pages/Stock';
 
+
 const App = () => {
     return (
         <React.StrictMode>

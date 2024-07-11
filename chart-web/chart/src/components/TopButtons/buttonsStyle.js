@@ -16,14 +16,6 @@ const styles = {
     topButtonContainer:{
         textAlign: 'right', 
         padding: 20
-    },
-    chartRightContainer:{
-        borderLeft: '1px solid #E0E0E0', 
-        padding: 10, 
-        alignContent: 'center'
-    },
-    chartRightContainerValue:{
-        fontWeight: 'bolder'
     }
 }
 
