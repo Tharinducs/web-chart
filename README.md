@@ -1,5 +1,7 @@
-For the frontend code refer to chart-web folder.
-For the API Backend code refer to chart-api folder
-For the UNIT test of Backend code refer to Tests folder.
+### Project Structure
 
-Thank you
+- **Frontend code**: Refer to the `chart-web` folder.
+- **API Backend code**: Refer to the `chart-api` folder.
+- **UNIT test of Backend code**: Refer to the `Tests` folder.
+
+Thank you.
