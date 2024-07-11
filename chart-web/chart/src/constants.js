@@ -7,3 +7,6 @@ export const WEIGHTED_BOND = "Weighted Bond MV & Excess Returns"
 export const MONTHS_YEARS_DAYS = ['6M','12M','3Y','5Y','FYTD']
 
 export const API_BEGIN_TEXT = "api"
+
+export const BASE_URL = 'http://localhost:5241/'
+export const DEFULT_TIMEOUT = 10000

@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-const BASE_URL = 'http://localhost:5241/'
-const DEFULT_TIMEOUT = 10000
+import { BASE_URL, DEFULT_TIMEOUT } from '../constants';
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,  // Replace with your API base URL

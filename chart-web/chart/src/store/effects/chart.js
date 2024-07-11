@@ -14,6 +14,7 @@ export const getCreditData = async (param) => {
             dispatch(actionCreators.setCreditCurrentData({}))
         }
     } catch (error) {
+        
         console.log(error)
     }
     finally {
